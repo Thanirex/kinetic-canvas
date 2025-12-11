@@ -1,12 +1,58 @@
 import VideoCard from "./VideoCard";
 
+// Helper function to extract YouTube ID
+const getYouTubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
+// Helper function to get YouTube thumbnail
+const getYouTubeThumbnail = (url: string) => {
+  const id = getYouTubeId(url);
+  return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : url;
+};
+
+// REPLACE THE LINKS BELOW WITH YOUR YOUTUBE VIDEOS
+// REPLACE THE LINKS BELOW WITH YOUR YOUTUBE VIDEOS
 const videos = [
-  { title: "Brand Documentary: The Vision Behind Innovation", thumbnail: "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&q=80", views: "2.4M", duration: "12:34" },
-  { title: "Music Video: Echoes of Tomorrow", thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80", views: "5.1M", duration: "4:20" },
-  { title: "Corporate Narrative: Building the Future", thumbnail: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80", views: "890K", duration: "8:45" },
-  { title: "Short Film: Parallel Lives", thumbnail: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80", views: "1.2M", duration: "18:22" },
-  { title: "Product Launch: Revolution in Motion", thumbnail: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80", views: "3.7M", duration: "2:15" },
-  { title: "Documentary Series: Urban Stories", thumbnail: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&q=80", views: "1.8M", duration: "45:00" },
+  {
+    title: "Hari Om Hari ShortFilm || Utsavam",
+    url: "https://youtu.be/Iyq8DS9ArVw?si=DNuH7EPjZnq89Pdg", // PASTE YOUR LINK HERE
+    views: "1.5k",
+    duration: "24:11"
+  },
+  {
+    title: "Award winning shorrtilm || 48-Hour Challenge",
+    url: "https://www.youtube.com/watch?v=kTS2-21Y8H0", // PASTE YOUR LINK HERE
+    views: "2k",
+    duration: "4:54"
+  },
+  {
+    title: "Echo Telugu Shortfilm || Utsavam",
+    url: "https://www.youtube.com/watch?v=fzdkSlBW-t4&t=118s", // PASTE YOUR LINK HERE
+    views: "6.3k",
+    duration: "28:56"
+  },
+  {
+    title: "Strike Four | Episode-1 | Short film Series",
+    url: "https://www.youtube.com/watch?v=v8Q9lQ8rwaQ", // PASTE YOUR LINK HERE
+    views: "1.5k",
+    duration: "11:30"
+  },
+  {
+    title: "VISTA | Telugu-English Shortfilm (2025)",
+    url: "https://youtu.be/gbpF0dgtotg?si=F1ChWEmarPghl_Kx", // PASTE YOUR LINK HERE
+    views: "4k",
+    duration: "14:58",
+    thumbnail: "https://img.youtube.com/vi/gbpF0dgtotg/hqdefault.jpg" // Manually override thumbnail
+  },
+  {
+    title: "Playlist Shortfilm",
+    url: "https://www.youtube.com/watch?v=elNSucwPfuU&t=109s", // PASTE YOUR LINK HERE
+    views: "6.3k",
+    duration: "18:30"
+  },
 ];
 
 const DirectionEditsSection = () => {
@@ -26,22 +72,24 @@ const DirectionEditsSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {videos.map((video, index) => (
             <div
-              key={video.title}
+              key={index}
               className="animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <VideoCard
                 title={video.title}
-                thumbnail={video.thumbnail}
+                thumbnail={video.thumbnail || getYouTubeThumbnail(video.url)}
                 views={video.views}
                 duration={video.duration}
                 aspectRatio="video"
+                link={video.url}
               />
             </div>
           ))}
         </div>
       </div>
-    </section>
+
+    </section >
   );
 };
 

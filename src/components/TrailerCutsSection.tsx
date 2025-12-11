@@ -1,22 +1,36 @@
 import { Film, Play } from "lucide-react";
 
+// Helper function to extract YouTube ID
+const getYouTubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
+// Helper function to get YouTube thumbnail
+const getYouTubeThumbnail = (url: string) => {
+  const id = getYouTubeId(url);
+  return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : url;
+};
+
+// REPLACE THE LINKS BELOW WITH YOUR YOUTUBE VIDEOS
 const trailers = [
   {
-    title: "ECHOES OF ETERNITY",
-    subtitle: "Official Theatrical Trailer",
-    thumbnail: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1200&q=80",
+    title: "HARI OM HARI",
+    subtitle: "0-Buget Film Trailer",
+    url: "https://www.youtube.com/watch?v=7f5jK4JchqU", // PASTE YOUR LINK HERE
     year: "2024",
   },
   {
-    title: "SHADOW PROTOCOL",
-    subtitle: "Final Trailer",
-    thumbnail: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=1200&q=80",
+    title: "STRIKE FOUR EP-1",
+    subtitle: "Telugu Web Series Trailer",
+    url: "https://www.youtube.com/watch?v=X_c5w1DN5cw", // PASTE YOUR LINK HERE
     year: "2023",
   },
   {
-    title: "THE LAST FRONTIER",
-    subtitle: "Teaser Trailer",
-    thumbnail: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1200&q=80",
+    title: "PLAYLIST",
+    subtitle: "Love-Shortfilm Trailer",
+    url: "https://www.youtube.com/watch?v=vw_5ojxA2uY", // PASTE YOUR LINK HERE
     year: "2024",
   },
 ];
@@ -28,7 +42,7 @@ const TrailerCutsSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-12 md:mb-16 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -45,25 +59,34 @@ const TrailerCutsSection = () => {
 
         <div className="space-y-8">
           {trailers.map((trailer, index) => (
-            <div
+            <a
               key={trailer.title}
-              className="group relative rounded-3xl overflow-hidden video-card-hover animate-fade-in"
+              href={trailer.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-3xl overflow-hidden video-card-hover animate-fade-in block"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="relative aspect-[21/9]">
                 <img
-                  src={trailer.thumbnail}
+                  src={getYouTubeThumbnail(trailer.url)}
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    if (img.src.includes('maxresdefault.jpg')) {
+                      img.src = img.src.replace('maxresdefault.jpg', 'hqdefault.jpg');
+                    }
+                  }}
                   alt={trailer.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
-                
+
                 {/* Dark cinematic overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-background/40" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/20" />
-                
+
                 {/* Film grain effect */}
                 <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 400 400\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.9\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')" }} />
-                
+
                 {/* Content */}
                 <div className="absolute inset-0 flex items-center justify-between p-8 md:p-12">
                   <div className="space-y-2">
@@ -73,14 +96,14 @@ const TrailerCutsSection = () => {
                     </h3>
                     <p className="text-muted-foreground text-sm md:text-base">{trailer.subtitle}</p>
                   </div>
-                  
+
                   {/* Play button */}
                   <button className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white/30 flex items-center justify-center transition-all duration-500 group-hover:border-primary group-hover:scale-110 group-hover:shadow-glow">
                     <Play className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-primary ml-1 transition-colors" fill="currentColor" />
                   </button>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

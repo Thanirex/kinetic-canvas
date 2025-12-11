@@ -19,7 +19,7 @@ const HeroSection = () => {
                   Creative Director & Video Editor
                 </p>
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] animate-fade-in" style={{ animationDelay: "0.4s" }}>
-                  <span className="text-glow-white">THANI</span>
+                  <span className="text-glow-white">THANEESH</span>
                   <br />
                   <span className="text-glow bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">VARMA</span>
                 </h1>
@@ -34,23 +34,27 @@ const HeroSection = () => {
                   <Play className="w-5 h-5" />
                   <span>View Showreel</span>
                 </button>
-                <button className="px-6 py-3 rounded-full glass-card border border-white/20 font-semibold transition-all duration-300 hover:bg-white/10 hover:scale-105">
+                <button
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-6 py-3 rounded-full glass-card border border-white/20 font-semibold transition-all duration-300 hover:bg-white/10 hover:scale-105"
+                >
                   Get in Touch
                 </button>
               </div>
 
+
               <div className="flex gap-8 pt-4 animate-fade-in" style={{ animationDelay: "1s" }}>
                 <div>
-                  <p className="text-3xl md:text-4xl font-bold text-primary">150+</p>
+                  <p className="text-3xl md:text-4xl font-bold text-primary">50+</p>
                   <p className="text-sm text-muted-foreground">Projects Delivered</p>
                 </div>
                 <div>
-                  <p className="text-3xl md:text-4xl font-bold text-accent">50M+</p>
-                  <p className="text-sm text-muted-foreground">Total Views</p>
+                  <p className="text-3xl md:text-4xl font-bold">4+</p>
+                  <p className="text-sm text-muted-foreground">Years Experience</p>
                 </div>
                 <div>
-                  <p className="text-3xl md:text-4xl font-bold">8+</p>
-                  <p className="text-sm text-muted-foreground">Years Experience</p>
+                  <p className="text-3xl md:text-4xl font-bold text-primary">Self Learnt</p>
+                  <p className="text-sm text-muted-foreground">Freelancer</p>
                 </div>
               </div>
             </div>
@@ -88,7 +92,7 @@ const HeroSection = () => {
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <ChevronDown className="w-6 h-6 text-muted-foreground" />
       </div>
-    </section>
+    </section >
   );
 };
 

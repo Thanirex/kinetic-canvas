@@ -6,7 +6,7 @@ const services = [
   { icon: Video, title: "Shooting", description: "Professional capture with attention to every detail" },
   { icon: Scissors, title: "Editing", description: "Seamless cuts that maintain perfect rhythm and flow" },
   { icon: Palette, title: "Color Grading", description: "Mood-defining looks that elevate your content" },
-  { icon: Sparkles, title: "Post-Production", description: "VFX, sound design, and final polish" },
+  { icon: Sparkles, title: "Post-Production", description: "Vector Motions, effects, sound design, and final polish" },
 ];
 
 const ServicesSection = () => {
@@ -24,7 +24,7 @@ const ServicesSection = () => {
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
-          
+
           <div className="overflow-hidden">
             <div className="marquee flex gap-6">
               {[...services, ...services].map((service, index) => (
