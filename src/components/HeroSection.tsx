@@ -19,12 +19,12 @@ const HeroSection = () => {
                   Creative Director & Video Editor
                 </p>
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] animate-fade-in" style={{ animationDelay: "0.4s" }}>
-                  <span className="text-glow-white">ALEX</span>
+                  <span className="text-glow-white">THANI</span>
                   <br />
-                  <span className="text-glow bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">RIVERA</span>
+                  <span className="text-glow bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">VARMA</span>
                 </h1>
               </div>
-              
+
               <p className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed animate-fade-in" style={{ animationDelay: "0.6s" }}>
                 End-to-End Content Creator crafting visual stories that captivate, convert, and leave lasting impressions.
               </p>

@@ -91,7 +91,7 @@ const ContactSection = () => {
 
         {/* Footer info */}
         <div className="mt-12 text-center text-muted-foreground text-sm">
-          <p>© 2024 Alex Rivera. All rights reserved.</p>
+          <p>© 2024 Thani Varma. All rights reserved.</p>
           <p className="mt-2">Crafting visual stories that matter.</p>
         </div>
       </div>
