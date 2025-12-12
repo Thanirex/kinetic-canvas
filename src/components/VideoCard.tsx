@@ -22,6 +22,7 @@ const VideoCard = ({ title, thumbnail, views, duration, aspectRatio = "video", c
       <img
         src={thumbnail}
         alt={title}
+        referrerPolicy="no-referrer"
         onError={(e) => {
           const img = e.currentTarget;
           if (img.src.includes('maxresdefault.jpg')) {

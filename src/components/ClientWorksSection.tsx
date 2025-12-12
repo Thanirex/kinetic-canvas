@@ -1,38 +1,7 @@
 import VideoCard from "./VideoCard";
 import { Smartphone } from "lucide-react";
-
-const shortFormVideos = [
-  {
-    title: "Viral Product Reveal",
-    thumbnail: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&q=80",
-    url: "https://www.instagram.com/", // PASTE YOUR INSTAGRAM REEL LINK HERE
-    views: "8.2M"
-  },
-  {
-    title: "Behind The Scenes",
-    thumbnail: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=400&q=80",
-    url: "https://www.instagram.com/", // PASTE YOUR INSTAGRAM REEL LINK HERE
-    views: "4.5M"
-  },
-  {
-    title: "Day in My Life",
-    thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80",
-    url: "https://www.instagram.com/", // PASTE YOUR INSTAGRAM REEL LINK HERE
-    views: "12.1M"
-  },
-  {
-    title: "Quick Tutorial",
-    thumbnail: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400&q=80",
-    url: "https://www.instagram.com/", // PASTE YOUR INSTAGRAM REEL LINK HERE
-    views: "6.7M"
-  },
-  {
-    title: "Trending Edit",
-    thumbnail: "https://images.unsplash.com/photo-1598387993441-a364f854c3e1?w=400&q=80",
-    url: "https://www.instagram.com/", // PASTE YOUR INSTAGRAM REEL LINK HERE
-    views: "15.3M"
-  },
-];
+import { clientWorks } from "../data/clientWorks";
+import { getDriveDirectLink } from "../lib/driveUtils";
 
 const ClientWorksSection = () => {
   return (
@@ -56,7 +25,7 @@ const ClientWorksSection = () => {
 
         {/* iPhone mockup container */}
         <div className="flex gap-4 md:gap-6 overflow-x-auto pb-8 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
-          {shortFormVideos.map((video, index) => (
+          {clientWorks.map((video, index) => (
             <div
               key={video.title}
               className="flex-shrink-0 animate-fade-in"
@@ -70,7 +39,7 @@ const ClientWorksSection = () => {
 
                   <VideoCard
                     title={video.title}
-                    thumbnail={video.thumbnail}
+                    thumbnail={getDriveDirectLink(video.thumbnail)}
                     views={video.views}
                     aspectRatio="portrait"
                     link={video.url}

@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Send, Mail, ArrowRight } from "lucide-react";
+import { Send, Mail, ArrowRight, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -7,11 +9,40 @@ const ContactSection = () => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission
+    setIsSubmitting(true);
+
+    // TODO: Replace 'YOUR_SERVICE_ID' with your actual EmailJS Service ID
+    const serviceId = "service_iguolvf";
+    const templateId = "template_yu5yg2n";
+    const publicKey = "tdH1XUlPvD1BwztdU";
+
+    const templateParams = {
+      from_name: formData.name,
+      reply_to: formData.email, // Matched with template variable {{reply_to}}
+      message: formData.message,
+      to_name: "Thaneesh", // Optional: Customize this
+    };
+
+    try {
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+      toast.success("Message sent successfully!", {
+        description: "I'll get back to you as soon as possible.",
+      });
+
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      toast.error("Failed to send message.", {
+        description: "Please try again later or contact me directly via social media.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -45,6 +76,7 @@ const ContactSection = () => {
                   className="w-full px-4 py-3 rounded-xl bg-card/50 border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                   placeholder="Your name"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div className="space-y-2">
@@ -59,6 +91,7 @@ const ContactSection = () => {
                   className="w-full px-4 py-3 rounded-xl bg-card/50 border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                   placeholder="your@email.com"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
             </div>
@@ -75,16 +108,27 @@ const ContactSection = () => {
                 className="w-full px-4 py-3 rounded-xl bg-card/50 border border-white/10 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300 resize-none"
                 placeholder="Tell me about your project..."
                 required
+                disabled={isSubmitting}
               />
             </div>
 
             <button
               type="submit"
-              className="group w-full py-4 rounded-xl gradient-cta text-white font-bold text-lg transition-all duration-300 hover:shadow-glow-lg hover:scale-[1.02] flex items-center justify-center gap-3"
+              disabled={isSubmitting}
+              className="group w-full py-4 rounded-xl gradient-cta text-white font-bold text-lg transition-all duration-300 hover:shadow-glow-lg hover:scale-[1.02] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              <Send className="w-5 h-5" />
-              <span>Send Message</span>
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span>Sending...</span>
+                </>
+              ) : (
+                <>
+                  <Send className="w-5 h-5" />
+                  <span>Send Message</span>
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </>
+              )}
             </button>
           </form>
         </div>
