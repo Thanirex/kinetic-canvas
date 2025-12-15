@@ -1,6 +1,18 @@
 import { Play, ChevronDown } from "lucide-react";
 
+// PASTE YOUR FULL YOUTUBE LINK HERE
+// (Works with standard links like https://www.youtube.com/watch?v=... or short links like https://youtu.be/...)
+const YOUTUBE_LINK = "https://youtu.be/iV8sZ38FpAg?si=8EWO-FAQd0dWYoRT";
+
+const getYoutubeId = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+};
+
 const HeroSection = () => {
+  const videoId = getYoutubeId(YOUTUBE_LINK);
+
   return (
     <section className="min-h-screen relative flex items-center justify-center px-4 md:px-8 pt-20 pb-32">
       {/* Background gradient effects */}
@@ -30,7 +42,10 @@ const HeroSection = () => {
               </p>
 
               <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: "0.8s" }}>
-                <button className="group flex items-center gap-3 px-6 py-3 rounded-full gradient-primary text-primary-foreground font-semibold transition-all duration-300 hover:shadow-glow-lg hover:scale-105">
+                <button
+                  onClick={() => window.open(YOUTUBE_LINK, '_blank')}
+                  className="group flex items-center gap-3 px-6 py-3 rounded-full gradient-primary text-primary-foreground font-semibold transition-all duration-300 hover:shadow-glow-lg hover:scale-105"
+                >
                   <Play className="w-5 h-5" />
                   <span>View Showreel</span>
                 </button>
@@ -53,36 +68,28 @@ const HeroSection = () => {
                   <p className="text-sm text-muted-foreground">Years Experience</p>
                 </div>
                 <div>
-                  <p className="text-3xl md:text-4xl font-bold text-primary">Self Learnt</p>
-                  <p className="text-sm text-muted-foreground">Freelancer</p>
+                  <p className="text-3xl md:text-4xl font-bold text-primary">Freelancer</p>
                 </div>
               </div>
             </div>
 
-            {/* Right side - Visual */}
-            <div className="relative aspect-video lg:aspect-square rounded-2xl overflow-hidden animate-scale-in" style={{ animationDelay: "0.5s" }}>
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-accent/20" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* Timeline visualization */}
-                <div className="w-full h-full p-6 flex flex-col justify-center gap-3">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <div className={`h-2 rounded-full ${i === 2 ? 'bg-primary' : 'bg-white/20'}`} style={{ width: `${30 + Math.random() * 50}%` }} />
-                      <div className={`h-2 rounded-full ${i === 2 ? 'bg-accent' : 'bg-white/10'}`} style={{ width: `${20 + Math.random() * 30}%` }} />
-                      <div className={`h-2 rounded-full bg-white/${i === 2 ? '30' : '5'}`} style={{ width: `${10 + Math.random() * 20}%` }} />
-                    </div>
-                  ))}
-                  <div className="absolute bottom-6 left-6 right-6 h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full w-1/3 bg-primary rounded-full animate-shimmer" style={{ backgroundSize: "200% 100%", backgroundImage: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))" }} />
-                  </div>
+            {/* Right side - Visual / Video */}
+            <div className="relative aspect-video rounded-2xl overflow-hidden animate-scale-in border border-white/10 shadow-2xl bg-black/50" style={{ animationDelay: "0.5s" }}>
+              {videoId ? (
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0`}
+                  title="Showreel"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-white/5">
+                  <p>Invalid YouTube Link</p>
                 </div>
-              </div>
-              {/* Play button overlay */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button className="w-20 h-20 rounded-full glass-card-strong flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-glow group">
-                  <Play className="w-8 h-8 text-primary group-hover:scale-110 transition-transform ml-1" fill="currentColor" />
-                </button>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -92,7 +99,7 @@ const HeroSection = () => {
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <ChevronDown className="w-6 h-6 text-muted-foreground" />
       </div>
-    </section >
+    </section>
   );
 };
 
