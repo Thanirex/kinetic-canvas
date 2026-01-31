@@ -7,6 +7,18 @@ export interface ClientWork {
 
 export const clientWorks: ClientWork[] = [
     {
+        title: "AI Generated Stranger Things Reel",
+        thumbnail: "https://drive.google.com/file/d/162pqOGcKiS0t8FYKLUD_VaqW0vTKl-hX/view?usp=sharing",
+        url: "https://www.instagram.com/reel/DSSQlu7DW72/",
+        views: ""
+    },
+    {
+        title: "El Rancho Sagrado Restaruant Promo",
+        thumbnail: "https://drive.google.com/file/d/11aAaIkGwtAZ7zSag9lri5VzdJT7f26SP/view?usp=sharing",
+        url: "https://www.instagram.com/reel/DTnTZrijTYl/",
+        views: ""
+    },
+    {
         title: "Hyderabad Feed Reel 1",
         // You can paste a Google Drive link here like: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing"
         // Make sure the file permission is set to "Anyone with the link"
