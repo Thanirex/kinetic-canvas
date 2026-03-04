@@ -16,6 +16,13 @@ const getYouTubeThumbnail = (url: string) => {
 
 const youtubeVideos = [
   {
+    title: "What Happens When You Vibe Code a Supernova in Real-Time",
+    url: "https://youtu.be/GDfUfAb8ZUE?si=s6QNJLiIlFOry9r2",
+    views: "",
+    likes: "",
+    duration: "10:00",
+  },
+  {
     title: "Is the Soul Just a Self-Learning Algorithm? | Hinduism Meets AI",
     url: "https://www.youtube.com/watch?v=_qmm46LD9cU&t=28s", // PASTE YOUR LINK HERE
     views: "",
