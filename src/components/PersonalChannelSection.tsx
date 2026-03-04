@@ -16,33 +16,35 @@ const getYouTubeThumbnail = (url: string) => {
 
 const youtubeVideos = [
   {
+    title: "We Met Again",
+    url: "https://youtu.be/R_Jq63pJ324?si=eaZH9rHAtGndy9dC",
+    views: "",
+    likes: "",
+  },
+  {
     title: "What Happens When You Vibe Code a Supernova in Real-Time",
     url: "https://youtu.be/GDfUfAb8ZUE?si=s6QNJLiIlFOry9r2",
     views: "",
     likes: "",
-    duration: "10:00",
   },
   {
     title: "Is the Soul Just a Self-Learning Algorithm? | Hinduism Meets AI",
     url: "https://www.youtube.com/watch?v=_qmm46LD9cU&t=28s", // PASTE YOUR LINK HERE
     views: "",
     likes: "",
-    duration: "4:53",
   },
   {
     title: "Age 21 is weird.",
     url: "https://www.youtube.com/watch?v=000uv0KkogQ", // PASTE YOUR LINK HERE
     views: "",
     likes: "",
-    duration: "1:58",
   },
   {
     title: "Ethnic day 2023 Gitam Hyderabad!",
     url: "https://www.youtube.com/watch?v=nm32igmdQW0&t=147s", // PASTE YOUR LINK HERE
     views: "",
     likes: "",
-    duration: "5:30",
-  },
+  }
 ];
 
 const PersonalChannelSection = () => {
@@ -92,7 +94,6 @@ const PersonalChannelSection = () => {
                   title={video.title}
                   thumbnail={getYouTubeThumbnail(video.url)}
                   views={video.views}
-                  duration={video.duration}
                   aspectRatio="video"
                   link={video.url}
                 />

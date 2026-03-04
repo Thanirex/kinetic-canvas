@@ -7,6 +7,12 @@ export interface ClientWork {
 
 export const clientWorks: ClientWork[] = [
     {
+        title: "Brew at coffee announcement reel",
+        thumbnail: "https://drive.google.com/file/d/1YNYds0xTBhxaWY3sIcbR63hBzxtD4DwS/view?usp=sharing",
+        url: "https://www.instagram.com/p/DVIcxP4E8-E/",
+        views: ""
+    },
+    {
         title: "AI Generated Stranger Things Reel",
         thumbnail: "https://drive.google.com/file/d/162pqOGcKiS0t8FYKLUD_VaqW0vTKl-hX/view?usp=sharing",
         url: "https://www.instagram.com/reel/DSSQlu7DW72/",
@@ -49,5 +55,5 @@ export const clientWorks: ClientWork[] = [
         thumbnail: "https://drive.google.com/file/d/19gN2gDWUdZno1VaFwhNSO7rnYG7sYBcp/view?usp=sharing",
         url: "https://www.instagram.com/reel/C42RtFXLaAN/",
         views: ""
-    },
+    }
 ];
